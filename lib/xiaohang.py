@@ -4,7 +4,7 @@
 @Version: 
 @Author: 
 @Date: 2019-01-12 15:51:53
-@LastEditTime: 2019-01-12 22:44:03
+@LastEditTime: 2019-01-13 21:56:24
 '''
 import requests,re
 from bs4 import BeautifulSoup
@@ -80,7 +80,7 @@ def parse_content(r):
     succeed_output("[-] 一共搜索到 {} 部视频，根据输入以下序号进行下载...".format(len(results)))
     for result in results:
         title = result['title']
-        succeed_output("[-] {} - {}".format(count,title))
+        succeed_output("[✓] {} - {}".format(count,title))
         count += 1
 
     # 获取播放列表
