@@ -6,7 +6,7 @@
 @LastEditTime: 2019-01-12 21:13:56
 '''
 from lib.utils import succeed_output,failed_output
-from lib.xiaohang import xhrun
+from engine.xiaohang import xhrun
 import os
 
 # 调试
@@ -14,7 +14,7 @@ import requests,re
 from urllib.parse import quote
 from bs4 import BeautifulSoup
 import threading
-from lib.dytt import dytt_run
+from engine.dytt import dytt_run
     
 def main():
     print(""" [-] 请根据以下序号进行选择：

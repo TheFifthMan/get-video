@@ -10,7 +10,7 @@ import requests,re
 requests.packages.urllib3.disable_warnings()
 from bs4 import BeautifulSoup
 from urllib.parse import quote
-from .utils import succeed_output,failed_output
+from lib.utils import succeed_output,failed_output
 
 # 配置
 url = 'https://movie.xhboke.com/index.php/vod/search.html'

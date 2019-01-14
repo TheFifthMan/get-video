@@ -32,7 +32,6 @@ else:
 def succeed_output(msg):
     print(set_color(FOREGROUND_GREEN),msg,set_color(FOREGROUND_WHITE))
     
-
 def failed_output(msg):
     print(set_color(FOREGROUND_RED),msg,set_color(FOREGROUND_WHITE))
 
