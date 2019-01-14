@@ -5,7 +5,7 @@
 @Date: 2019-01-12 15:15:28
 @LastEditTime: 2019-01-12 21:13:56
 '''
-from lib.output import succeed_output,failed_output
+from lib.utils import succeed_output,failed_output
 from lib.xiaohang import xhrun
 import os
 
@@ -13,8 +13,8 @@ import os
 import requests,re
 from urllib.parse import quote
 from bs4 import BeautifulSoup
-
-
+import threading
+from lib.dytt import dytt_run
     
 def main():
     print(""" [-] 请根据以下序号进行选择：
@@ -24,13 +24,25 @@ def main():
     """)
 
     choice = input(" [-] 请输入您的选择: ")
+    if choice == "e":
+        return 
+
+    movies_name = input(' [-] 请输入视频名称： ')
     if choice == "1":
-        movies_name = input(' [-] 请输入视频名称： ')
         xhrun(movies_name)
     elif choice == "2":
-        pass
-    elif choice == 'e':
-        return 
+        ts = [
+            threading.Thread(target=dytt_run,args=(movies_name,))
+        ]
+        for t in ts:
+            t.start()
+        for t in ts:
+            t.join()
+        with open('history/'+movies_name+".txt",'r',encoding='utf-8')as f:
+            links = f.read()
+        
+        succeed_output("[√] 为您搜索到以下影片： \n{}".format(links))
+
     
     main()
 

@@ -7,9 +7,10 @@
 @LastEditTime: 2019-01-13 21:56:24
 '''
 import requests,re
+requests.packages.urllib3.disable_warnings()
 from bs4 import BeautifulSoup
 from urllib.parse import quote
-from .output import succeed_output,failed_output
+from .utils import succeed_output,failed_output
 
 # 配置
 url = 'https://movie.xhboke.com/index.php/vod/search.html'
@@ -27,7 +28,7 @@ def search(movies_name):
     headers = {
         'content-type': "application/x-www-form-urlencoded",
     }
-    r = requests.post(url,data=payload,headers=headers)
+    r = requests.post(url,data=payload,headers=headers,verify=False)
     if r.status_code == 200:
         succeed_output("[✓] 请求成功")
         return r
@@ -42,7 +43,7 @@ def get_video(link):
     @param {type}  详细播放页面链接
     @return: 影片名字，播放器链接
     '''
-    r = requests.get(root_url+link)
+    r = requests.get(root_url+link,verify=False)
     if r.status_code == 200:
         html = r.text
         result = re.search("link_next.*\"url\"\:(.*?)\,",html)
@@ -60,7 +61,7 @@ def get_playlist(link):
     @param {type} 
     @return: 
     '''
-    r = requests.get(root_url+link)
+    r = requests.get(root_url+link,verify=False)
     html = r.text
     soup = BeautifulSoup(html,'html.parser')
     div = soup.find(id='playlist1')
@@ -111,7 +112,7 @@ def parse_content(r):
 def get_m3u8(url):
     url = re.sub("\"","",url)
     if not re.search('m3u8',url):
-        r = requests.get(url)
+        r = requests.get(url,verify=False)
         res = re.search("var main = \"(.*?)\"",r.text)
         res.group(1)
         link = re.sub("share/.*",res.group(1),url)

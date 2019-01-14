@@ -6,6 +6,7 @@
 @LastEditTime: 2019-01-13 11:39:46
 '''
 import ctypes,os
+from bs4 import BeautifulSoup
 
 # 渲染
 if os.name == 'nt':
@@ -34,6 +35,12 @@ def succeed_output(msg):
 
 def failed_output(msg):
     print(set_color(FOREGROUND_RED),msg,set_color(FOREGROUND_WHITE))
+
+def parser(res):
+    html = res.text
+    soup = BeautifulSoup(html,'html.parser')
+    return soup
+
  
 if __name__ == "__main__":
     succeed_output("This is succeed message! ")
