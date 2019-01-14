@@ -38,7 +38,7 @@ def main():
             t.start()
         for t in ts:
             t.join()
-        with open('history/'+movies_name+".txt",'r',encoding='utf-8')as f:
+        with open('history/'+movies_name+".txt",'r')as f:
             links = f.read()
         
         succeed_output("[√] 为您搜索到以下影片： \n{}".format(links))
