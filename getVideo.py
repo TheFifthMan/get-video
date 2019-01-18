@@ -7,6 +7,7 @@
 '''
 from lib.utils import succeed_output,failed_output
 from engine.xiaohang import xhrun
+from lib.qingting import Player,fm_run
 import os
 
 # 调试
@@ -16,11 +17,13 @@ from bs4 import BeautifulSoup
 import threading
 from engine.dytt import dytt_run
 from engine.btbtdy import btbtdy_run
-    
+p = Player()
+
 def main():
     print(""" [-] 请根据以下序号进行选择：
     1. 搜索播放链接
     2. 搜索种子
+    3. 电台FM
     e. exit   
     """)
 
@@ -28,10 +31,11 @@ def main():
     if choice == "e":
         return 
 
-    movies_name = input(' [-] 请输入视频名称： ')
     if choice == "1":
+        movies_name = input(' [-] 请输入视频名称： ')
         xhrun(movies_name)
     elif choice == "2":
+        movies_name = input(' [-] 请输入视频名称： ')
         if os.path.exists(os.path.join('torrent',movies_name+".txt")):
             os.remove(os.path.join('torrent',movies_name+".txt"))
 
@@ -50,21 +54,22 @@ def main():
             succeed_output("[√] 为您搜索到以下影片： \n{}".format(links))
         except:
             failed_output("[x] 没有内容")
-        
+    elif choice == "3":
+        fm_run(p)
 
-    
     main()
 
 
 if __name__ == "__main__":
-    print("""
+    msg = """
      ██████╗ ███████╗████████╗██╗   ██╗██╗██████╗ ███████╗ ██████╗ ███████╗
     ██╔════╝ ██╔════╝╚══██╔══╝██║   ██║██║██╔══██╗██╔════╝██╔═══██╗██╔════╝
     ██║  ███╗█████╗     ██║   ██║   ██║██║██║  ██║█████╗  ██║   ██║███████╗
     ██║   ██║██╔══╝     ██║   ╚██╗ ██╔╝██║██║  ██║██╔══╝  ██║   ██║╚════██║
     ╚██████╔╝███████╗   ██║    ╚████╔╝ ██║██████╔╝███████╗╚██████╔╝███████║
-     ╚═════╝ ╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═════╝ ╚══════╝ ╚═════╝ ╚══════╝         v1.0                                                                                                                 
-    """)
+     ╚═════╝ ╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═════╝ ╚══════╝ ╚═════╝ ╚══════╝         v0.1.5                                                                                                                 
+    """
+    print(msg)
     if not os.path.exists('history'):
         os.mkdir('history')
     
