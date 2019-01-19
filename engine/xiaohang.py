@@ -4,13 +4,13 @@
 @Version: 
 @Author: 
 @Date: 2019-01-12 15:51:53
-@LastEditTime: 2019-01-13 21:56:24
+@LastEditTime: 2019-01-18 22:49:50
 '''
 import requests,re
 requests.packages.urllib3.disable_warnings()
 from bs4 import BeautifulSoup
 from urllib.parse import quote
-from lib.utils import succeed_output,failed_output
+from lib.output import succeed_output,failed_output
 
 # 配置
 url = 'https://movie.xhboke.com/index.php/vod/search.html'

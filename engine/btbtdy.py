@@ -3,7 +3,7 @@
 import requests,re
 from urllib.parse import quote
 requests.packages.urllib3.disable_warnings()
-from lib.utils import parser, succeed_output, failed_output
+from lib.output import parser, succeed_output, failed_output
 
 
 root_url = "http://www.btbtdy.tv"

@@ -3,11 +3,13 @@
 @Version: 
 @Author: 
 @Date: 2019-01-12 15:15:28
-@LastEditTime: 2019-01-14 21:26:37
+@LastEditTime: 2019-01-19 00:42:31
 '''
-from lib.utils import succeed_output,failed_output
+from lib.output import succeed_output,failed_output
+from lib.player import Player
 from engine.xiaohang import xhrun
-from lib.qingting import Player,fm_run
+from lib.qingting import fm_run
+from lib.music import music_run
 import os
 
 # 调试
@@ -24,6 +26,7 @@ def main():
     1. 搜索播放链接
     2. 搜索种子
     3. 电台FM
+    4. 搜索音乐
     e. exit   
     """)
 
@@ -56,6 +59,8 @@ def main():
             failed_output("[x] 没有内容")
     elif choice == "3":
         fm_run(p)
+    elif choice == "4":
+        music_run()
 
     main()
 
@@ -75,5 +80,9 @@ if __name__ == "__main__":
     
     if not os.path.exists('torrent'):
         os.mkdir('torrent')
+
+    if not os.path.exists('music'):
+        os.mkdir('music')
+
     main()
 

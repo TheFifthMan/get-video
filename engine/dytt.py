@@ -3,12 +3,12 @@
 @Version: 
 @Author: 
 @Date: 2019-01-12 22:47:35
-@LastEditTime: 2019-01-14 21:21:57
+@LastEditTime: 2019-01-18 22:49:42
 '''
 import requests
 requests.packages.urllib3.disable_warnings()
 from urllib.parse import quote
-from lib.utils import failed_output,succeed_output,parser
+from lib.output import failed_output,succeed_output,parser
 import queue
 import threading
 root_url = "https://www.dytt.in"
